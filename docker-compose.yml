@@ -24,23 +24,23 @@ services:
       - build-cache:/home/eqemu/.ccache/
       - spire-assets:/home/eqemu/.cache/
     ports:
-      - ${IP_ADDRESS}:2222:22/tcp
-      - ${IP_ADDRESS}:2222:22/udp
-      - ${IP_ADDRESS}:3000-3010:3000-3010
-      - ${IP_ADDRESS}:8080:8080
-      - ${IP_ADDRESS}:9001:9001/tcp
-      - ${IP_ADDRESS}:9001:9001/udp
-      - ${IP_ADDRESS}:9000:9000/tcp
-      - ${IP_ADDRESS}:9000:9000/udp
-      - ${IP_ADDRESS}:5999:5999/tcp
-      - ${IP_ADDRESS}:5999:5999/udp
-      - ${IP_ADDRESS}:5998:5998/tcp
-      - ${IP_ADDRESS}:5998:5998/udp
-      - ${IP_ADDRESS}:6000:6000/tcp
-      - ${IP_ADDRESS}:7778:7778/tcp
-      - ${IP_ADDRESS}:7778:7778/udp
-      - ${IP_ADDRESS}:7000-${PORT_RANGE_HIGH}:7000-${PORT_RANGE_HIGH}/tcp
-      - ${IP_ADDRESS}:7000-${PORT_RANGE_HIGH}:7000-${PORT_RANGE_HIGH}/udp
+      - "${IP_ADDRESS}:2222:22/tcp"
+      - "${IP_ADDRESS}:2222:22/udp"
+      - "${IP_ADDRESS}:3000-3010:3000-3010"
+      - "${IP_ADDRESS}:8080:8080"
+      - "${IP_ADDRESS}:9001:9001/tcp"
+      - "${IP_ADDRESS}:9001:9001/udp"
+      - "${IP_ADDRESS}:9000:9000/tcp"
+      - "${IP_ADDRESS}:9000:9000/udp"
+      - "${IP_ADDRESS}:5999:5999/tcp"
+      - "${IP_ADDRESS}:5999:5999/udp"
+      - "${IP_ADDRESS}:5998:5998/tcp"
+      - "${IP_ADDRESS}:5998:5998/udp"
+      - "${IP_ADDRESS}:6000:6000/tcp"
+      - "${IP_ADDRESS}:7778:7778/tcp"
+      - "${IP_ADDRESS}:7778:7778/udp"
+      - "${IP_ADDRESS}:7000-${PORT_RANGE_HIGH}:7000-${PORT_RANGE_HIGH}/tcp"
+      - "${IP_ADDRESS}:7000-${PORT_RANGE_HIGH}:7000-${PORT_RANGE_HIGH}/udp"
     environment:
       - SPIRE_PORT=${SPIRE_PORT:-3000}
       - SPIRE_ADMIN_PASSWORD=${SPIRE_ADMIN_PASSWORD:-}
@@ -71,7 +71,7 @@ services:
       args:
         - INNODB_BUFFER_POOL_SIZE=${INNODB_BUFFER_POOL_SIZE:-256MB}
     ports:
-      - ${IP_ADDRESS}:3306:3306
+      - "${IP_ADDRESS}:3306:3306"
     volumes:
       - ${DATA_PATH_HOST}/mariadb:/var/lib/mysql:delegated
     environment:
@@ -92,7 +92,7 @@ services:
     build: ./containers/http-proxy
     restart: unless-stopped
     ports:
-      - ${IP_ADDRESS}:8082:80
+      - "${IP_ADDRESS}:8082:80"
     environment:
       - BASIC_AUTH_USERNAME=${PHPMYADMIN_USERNAME}
       - BASIC_AUTH_PASSWORD=${PHPMYADMIN_PASSWORD}
@@ -122,7 +122,7 @@ services:
     image: akkadius/peq-editor:latest
     restart: unless-stopped
     ports:
-      - ${IP_ADDRESS}:8081:80
+      - "${IP_ADDRESS}:8081:80"
     volumes:
       - ${DATA_PATH_HOST}/peq-editor:/var/www/html
     environment:
@@ -154,8 +154,8 @@ services:
     volumes:
       - ./server/quests/:/home/quests/
     ports:
-      - ${IP_ADDRESS}:21:21
-      - ${IP_ADDRESS}:30000-30049:30000-30049
+      - "${IP_ADDRESS}:21:21"
+      - "${IP_ADDRESS}:30000-30049:30000-30049"
     networks:
       - backend
 
