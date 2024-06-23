@@ -235,9 +235,10 @@ pull-maps: ##@assets Pulls maps
 		cd server && wget --progress=bar:force:noscroll https://github.com/Akkadius/eqemu-maps/releases/latest/download/maps.zip -O /tmp/maps.zip && unzip -o /tmp/maps.zip -d ~/server/maps && rm /tmp/maps.zip || true; \
 	fi
 
+# updated the source to point to KWSM source repo
 pull-eqemu-code: ##@assets Pulls eqemu code
 	@./assets/scripts/banner.pl "Pulling EQEmu Source Code into [./code]"
-	git -C ./code pull 2> /dev/null || git clone https://github.com/EQEmu/Server.git code
+	git -C ./code pull 2> /dev/null || git clone https://github.com/KWSM-P99/litterbox-eqemu-server.git code
 
 pull-peq-quests: ##@assets Pulls ProjectEQ quests
 	@./assets/scripts/banner.pl "Pulling Latest ProjectEQ Quests"
